@@ -6,10 +6,12 @@ Created on Mon Feb 17 20:02:54 2020
 """
 import numpy as np
 #Node_State= np.array([[2,8,3], [1,6,4], [7,0,5]])
-Node_State= np.array([[1,2,3], [4,5,6], [7,0,8]])
+#Node_State= np.array([[1,2,3], [4,5,6], [7,0,8]])
+Node_State= np.array([[1,2,3], [4,6,5], [8,0,7]])
+
 Nodes={0:Node_State}
 Node_index=1
-Parent_Node_index=1
+Parent_Node_index=0
 Nodesinfo=[]
 Goal=np.array([[1,2,3], [4,5,6], [7,8,0]])
 def BlankTileLocation(CurrentNode):
@@ -25,7 +27,7 @@ def ActionMoveLeft(CurrentNode):
         temp=NewNode[i][j-1]
         NewNode[i][j-1]=NewNode[i][j]
         NewNode[i][j]=temp
-        if np.all(CurrentNode ==Goal):
+        if np.all(NewNode==Goal):
             s=1  
         return [s,NewNode]
     else:
@@ -38,7 +40,7 @@ def ActionMoveRight(CurrentNode):
         temp=NewNode[i][j+1]
         NewNode[i][j+1]=NewNode[i][j]
         NewNode[i][j]=temp
-        if np.all(CurrentNode ==Goal):
+        if np.all(NewNode==Goal):
             s=1  
         return [s,NewNode]
     else:
@@ -51,21 +53,22 @@ def ActionMoveUp(CurrentNode):
         temp=NewNode[i-1][j]
         NewNode[i-1][j]=NewNode[i][j]
         NewNode[i][j]=temp
-        if np.all(CurrentNode ==Goal):
-            s=1  
+        if np.all(NewNode==Goal):
+            s=1
         return [s,NewNode]
     else:
         return[s,CurrentNode]
 def ActionMoveDown(CurrentNode):
     [i ,j] = BlankTileLocation(CurrentNode)
     s=0
+    print(i)
     if (i<2):
         NewNode=np.copy(CurrentNode)
         temp=NewNode[i+1][j]
         NewNode[i+1][j]=NewNode[i][j]
         NewNode[i][j]=temp
-        if np.all(CurrentNode ==Goal):
-            s=1       
+        if np.all(NewNode==Goal):
+            s=1  
         return [s,NewNode]
     else:
         return[s,CurrentNode]
@@ -77,20 +80,12 @@ def AddNode(CurrentNode):
     global Nodesinfo
     st=1
     for i in Nodes.values():
-        if np.all(i==CurrentNode):
+        if np.all(CurrentNode==i):
             flag=0
             break
     if (flag==1):
              Nodes[Node_index]=CurrentNode
-             if len(Nodesinfo)==0:
-                 Nodesinfo.append([Node_index])
-                 st=0
-            if st==0:
-
-             else:
-                 Nodesinfo[Parent_Node_index].append(Node_index)
              Node_index+=1
-             return 0
              
 if __name__ == "__main__":
  while (1):
