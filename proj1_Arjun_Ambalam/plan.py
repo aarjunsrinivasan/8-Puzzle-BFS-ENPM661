@@ -7,11 +7,18 @@ Created on Thu Feb 20 23:20:03 2020
 
 import numpy as np
 #Node_State=np.array([[1,0,3],[4,2,5],[7,8,6]])#very easy
-#Node_State=np.array([[1,0,3],[4,2,5],[7,8,6]])#very easy
+Node_State=np.array([[1,0,3],[4,2,5],[7,8,6]])#very easy
 #Node_State=np.array([[6,3,0],[2,1,8],[5,4,7]]) #easy
 #Node_State=np.array([[6,3,8],[2,4,1],[0,5,7]]) #med
-#Node_State=np.array([[8,6,7],[2,5,4],[3,0,1]]) #hard
-#Node_State=np.array([[5,2,8],[4,1,7],[0,3,6]]) 
+# Node_State=np.array([[8,6,7],[2,5,4],[3,0,1]]) #hard
+print("Enter the initial state of the puzzle row wise")
+print("\n")
+for i in range(0,3):
+   for j in range(0,3):
+       Node_State[i][j]=input()
+
+print("The Initial Puzzle State is")
+print(Node_State)
 Nodes={0:Node_State}
 Node_index=1
 Parent_Node_index=0
@@ -133,14 +140,7 @@ def reorder(arr):
         temp[index[i]] = arr[i] 
     return temp
 
-print("Enter the initial state of the puzzle row wise")
-print("\n")
-for i in range(0,3):
-   for j in range(0,3):
-       Node_State[i][j]=input()
 
-print("The Initial Puzzle State is")
-print(Node_State)
 if(isSolvable(Node_State)):
     print("The Puzzle is Solvable")
     br=1
@@ -209,8 +209,3 @@ if(br==1):
     c.write(' ')
     c.write(str(v+1) +'\n')
  c.close()
-
-
-
-
-    
