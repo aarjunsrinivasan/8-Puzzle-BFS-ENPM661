@@ -1,4 +1,5 @@
 # ENPM661
+Used Brute Force Search to solve 8-Puzzle Problem
 Tested in
 #Python version 3.7
 
